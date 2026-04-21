@@ -1,0 +1,157 @@
+Auditoria Pré-Deploy — Clínica Quinta do Rio
+Data: 21 de Abril de 2026 · Auditor: Claude Code · Âmbito: Código, Design, Copy, SEO, RGPD/ERS
+
+🔴 CRÍTICO — Bloqueia Deploy (4 problemas)
+🔴 1 — Footer: Razão Social, NIF e Licença ERS são [a confirmar]
+Problema: O footer em components/clinic/Footer.tsx exibe literalmente os textos [a confirmar] em três campos obrigatórios por lei: Razão Social, NIF e Licença ERS.
+
+Impacto: Violação directa da checklist ERS. O CLAUDE.md diz explicitamente: "Se qualquer um destes elementos faltar, recusa-te a fazer build de produção." Um inspector da ERS que visite o site antes de estes dados estarem preenchidos pode classificar a clínica como incumpridora.
+
+Solução: Obter os dados reais junto do cliente antes do deploy (razão social legal, NIF da entidade, número de licença ERS) e substituir os placeholders. Estimativa: 0 min de código, depende do cliente.
+
+🔴 2 — Cédulas OMD marcadas como [a confirmar] e visíveis publicamente
+Problema: Em app/equipa/page.tsx cada card de médico exibe Cédula OMD: [a confirmar] no HTML público. O JSON-LD em app/equipa/page.tsx:99 tem "value": "a confirmar" em dados estruturados que o Google indexa.
+
+Impacto: Duplo problema: (1) a Ordem dos Médicos Dentistas é uma entidade reguladora — exibir médicos sem cédula verificada é um risco reputacional e potencial problema regulatório; (2) o Google, ao indexar dados Physician com cédula "a confirmar", vai penalizar o E-E-A-T do site.
+
+Solução: Ou remove os campos de cédula até os dados estarem confirmados, ou obtém as cédulas OMD reais. Em qualquer caso, não publicar sem substituir os placeholders. Estimativa: 10 min de código quando os dados chegarem.
+
+🔴 3 — Páginas /politica-privacidade e /termos-uso não existem
+Problema: O footer em components/clinic/Footer.tsx linka para /politica-privacidade e /termos-uso. Estas rotas não existem no projecto — geram 404.
+
+Impacto: (1) São legalmente obrigatórias sob o RGPD — um site de saúde sem Política de Privacidade é uma infracção directa; (2) os 404 no footer são detectados por qualquer crawler de SEO ou ferramenta de auditoria; (3) o formulário de contacto e de marcação recolhem dados pessoais sem ligação a uma política de privacidade válida, o que é um problema RGPD activo.
+
+Solução: Criar as duas páginas com conteúdo mínimo mas legalmente correcto antes do deploy. Estimativa: 45 min a 1h30 (depende de ter ou não texto base da clínica).
+
+🔴 4 — Artigos de blog demo: true estão acessíveis e indexáveis publicamente
+Problema: Os três artigos MDX têm demo: true e cada um começa com um aviso de demonstração. Estão completamente acessíveis em URLs públicas como /blog/importancia-consultas-regulares. O generateStaticParams() em app/blog/[slug]/page.tsx vai incluí-los no build estático. O metadata.robots não está definido, portanto serão indexados pelo Google.
+
+Impacto: Artigos de saúde sem revisão clínica verificada, publicados sob o nome real de médicos da clínica (Dr. João Diogo, Dr.ª Ana Lúcia Diogo, Dr. Pedro Silvério), indexados pelo Google. O CLAUDE.md diz: "Proibição absoluta: Nunca publiques um artigo de saúde sem autor identificado, sem data de revisão, ou com afirmações médicas sem fonte." Estes artigos têm autores identificados mas não têm revisão médica confirmada.
+
+Solução: Ou (a) adicionar export const metadata = { robots: { index: false } } condicionalmente para posts demo, ou (b) mover os posts demo para fora da pasta content/posts/ até estarem validados, ou (c) obter aprovação explícita da equipa clínica de cada artigo antes do deploy. Estimativa: 20 min para opção (a).
+
+🟡 IMPORTANTE — Melhoria significativa (8 problemas)
+🟡 5 — Dados duplicados e divergentes em 3 pares de ficheiros
+Problema: O projecto tem três instâncias de duplicação de dados que já estão a divergir:
+
+Dado	Ficheiro A	Ficheiro B	Divergência actual
+Equipa	components/clinic/EquipaSection.tsx	app/equipa/page.tsx	Estruturas de dados diferentes (corAvatar vs cor), cores diferentes para as mesmas pessoas
+Acordos	components/clinic/ConveniosSection.tsx	app/convenios/page.tsx	Homepage tem 6, página de Acordos tem 8 — faltam Multicare, Médis, AdvanceCare na homepage
+Horários + Contactos	app/contactos/page.tsx	app/marcacoes/page.tsx	Dados idênticos mas hardcoded em dois sítios — qualquer alteração tem de ser feita a dobrar
+Impacto: Bug garantido em produção. Quando o cliente alterar um horário ou adicionar um convénio, vai actualizar um sítio e esquecer o outro. Já aconteceu com os Acordos.
+
+Solução: Criar lib/clinica-data.ts com as constantes partilhadas (horários, contactos) exportadas, e consolidar os dados de Acordos e equipa numa fonte de verdade única. Estimativa: 1h30.
+
+🟡 6 — ServicosSection na homepage não linka para as páginas de serviços
+Problema: Os 6 cards de serviços em components/clinic/ServicosSection.tsx são <div> não clicáveis. Só existe um link genérico "Ver todas as especialidades" no fundo da secção. A página /servicos linka correctamente para cada serviço com "Saber mais →".
+
+Impacto: Um utilizador que aterra na homepage e vê "Implantologia" não tem forma directa de caber mais sem ir primeiro a /servicos. O conteúdo de cada serviço (4 secções detalhadas com JSON-LD MedicalProcedure) é completamente invisível a partir da homepage. Perda de SEO interno e UX degradado.
+
+Solução: Substituir os <div> por <Link href={'/servicos/${slug}'>. Requer mapear os títulos da homepage com os slugs de servicos-data.ts, ou simplesmente usar o array servicos existente e mostrar os primeiros 6. Estimativa: 30 min.
+
+🟡 7 — EquipaSection na homepage não linka para /equipa
+Problema: Os cards de médicos em components/clinic/EquipaSection.tsx não têm link. O utilizador não tem forma de ver as bios completas a partir da homepage.
+
+Impacto: A página /equipa com bios completas e JSON-LD Physician é completamente desligada da navegação natural do utilizador. Perda de tráfego interno e de PageRank para a página de equipa.
+
+Solução: Envolver cada card num <Link href="/equipa"> ou, idealmente, <Link href={'/equipa#${slug}"> se os cards tiverem IDs. Estimativa: 15 min.
+
+🟡 8 — Ícone de Implantologia inconsistente entre homepage e página de serviços
+Problema: components/clinic/ServicosSection.tsx:11 usa CircleDot para Implantologia. lib/servicos-data.ts:11 usa Wrench. São ícones completamente diferentes — um é um círculo com ponto, o outro é uma chave de fenda.
+
+Impacto: Inconsistência visual entre a homepage e a página de serviços. Um utilizador que veja o ícone na homepage e depois vá a /servicos vai ver um ícone diferente para o mesmo serviço.
+
+Solução: Resolver ao implementar o ponto 6 (usar o array servicos da lib diretamente na homepage). Estimativa: incluído no ponto 6.
+
+🟡 9 — Metadata OpenGraph incompleta no root layout
+Problema: O openGraph em app/layout.tsx só tem locale e type. Faltam title, description e images.
+
+
+// Actual (incompleto)
+openGraph: { locale: "pt_PT", type: "website" }
+
+// Correcto
+openGraph: {
+  locale: "pt_PT",
+  type: "website",
+  title: "Clínica Quinta do Rio — Medicina Dentária em Seixal",
+  description: "...",
+  images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+}
+Impacto: Partilha do site no WhatsApp, Facebook, LinkedIn vai aparecer sem imagem e sem título contextual. Para uma clínica onde os pacientes partilham o link para recomendar, isto é uma oportunidade perdida relevante.
+
+Solução: Completar o openGraph e criar uma imagem OG de 1200×630px. Estimativa: 20 min de código + tempo de design da imagem.
+
+🟡 10 — Schema.org MedicalClinic incompleto
+Problema: O JSON-LD em app/layout.tsx está correcto mas incompleto. Faltam os campos mais importantes para SEO local:
+
+image — Google usa para Knowledge Panel
+url — referência canónica
+openingHoursSpecification — aparece em resultados de pesquisa ("Aberto agora")
+availableService — lista de serviços
+sameAs — Facebook, Google Business Profile, Doctoralia
+Impacto: O snippet de pesquisa da clínica não vai mostrar horários de funcionamento. O Knowledge Panel do Google vai ficar incompleto. SEO local directamente afectado.
+
+Solução: Adicionar os campos em falta. openingHoursSpecification é o mais valioso e os dados de horário já existem em contactos/page.tsx. Estimativa: 30 min.
+
+🟡 11 — Blog: JSON-LD sem reviewedBy e artigos sem data de última revisão médica
+Problema: O CLAUDE.md especifica que artigos de saúde precisam de reviewedBy com Physician. O tipo PostMeta em lib/blog.ts não tem campos reviewedBy ou lastReviewed. O JSON-LD em app/blog/[slug]/page.tsx tem lastReviewed igual a datePublished (o que é fictício) mas não tem reviewedBy.
+
+Impacto: Para o Google, artigos YMYL (saúde) sem reviewedBy têm E-E-A-T inferior. Importante para rankear artigos médicos vs. concorrência.
+
+Solução: Adicionar campo reviewedBy ao frontmatter dos MDX e ao tipo PostMeta, e incluí-lo no JSON-LD. Estimativa: 30 min.
+
+🟡 12 — Google Maps embed sem chave de API
+Problema: O iframe em app/contactos/page.tsx:73-79 usa maps.google.com/maps?q=...&output=embed — o endpoint "basic embed" sem chave de API.
+
+Impacto: O Google está a deprecar progressivamente embeds sem chave. Em produção, pode aparecer com aviso "For development purposes only" ou parar de funcionar sem aviso prévio. A solução correcta é Google Maps Embed API com chave de API gratuita.
+
+Solução: Criar chave de API do Google Maps, ativar Maps Embed API, usar o endpoint https://www.google.com/maps/embed/v1/place?key=KEY&q=.... Guardar a chave em .env.local. Estimativa: 20 min.
+
+🟢 NICE-TO-HAVE — Polimento (6 problemas)
+🟢 13 — Geist Mono importada e carregada mas nunca usada
+Problema: app/layout.tsx importa e carrega Geist_Mono do Google Fonts e aplica --font-geist-mono ao HTML. Nenhum componente usa font-mono em Tailwind.
+
+Impacto: ~50KB de carregamento de fonte desnecessário em cada visita. Pequeno mas evitável.
+
+Solução: Remover Geist_Mono da importação e do className do <html>. Estimativa: 2 min.
+
+🟢 14 — Cores dos avatares da equipa divergem entre homepage e /equipa
+Problema: Na EquipaSection.tsx (homepage): Dr. Pedro → teal-500, Dr.ª Ana Lúcia → teal-600, Dr. João → teal-700, Dr.ª Ana Sofia → teal-800. Em app/equipa/page.tsx: Dr. Pedro → teal-600, Dr.ª Ana Lúcia → cyan-600, Dr. João → stone-600, Dr.ª Ana Sofia → teal-700. Quatro pessoas, dois esquemas de cores diferentes.
+
+Solução: Resolver ao consolidar dados (ponto 5). Estimativa: incluído no ponto 5.
+
+🟢 15 — Blog sem imagens de capa — placeholder genérico para todos os artigos
+Problema: Todos os artigos têm o mesmo ícone SVG de livro teal como placeholder. Numa listagem de blog, a ausência de imagens distintas reduz o CTR e torna a página visualmente repetitiva.
+
+Impacto: Não bloqueia lançamento, mas numa clínica que vai publicar conteúdo regularmente, as imagens de capa são importantes para a identidade editorial.
+
+Solução: Ou fotografias reais (preferível), ou pelo menos gerar imagens OG por categoria com cores/ícones diferentes. A estrutura (div com h-48) já está pronta para receber next/image. Estimativa: depende do cliente fornecer imagens.
+
+🟢 16 — Breadcrumb no blog post usa <a> em vez de <Link>
+Problema: app/blog/[slug]/page.tsx:72-77 usa <a href="/blog"> para o breadcrumb "Blog". Devia ser <Link href="/blog"> para prefetch e navegação client-side.
+
+Solução: Substituir <a> por <Link>. Estimativa: 2 min.
+
+🟢 17 — Stats do hero hardcoded sem fonte de verdade
+Problema: components/clinic/HeroSection.tsx tem 17+, 11 e 4 hardcoded directamente no JSX.
+
+Impacto: Quando a clínica contratar um 5.º médico ou adicionar uma 12.ª especialidade, ninguém se vai lembrar de actualizar o hero.
+
+Solução: Criar constantes em lib/clinica-data.ts (já proposto no ponto 5) e importar. Estimativa: 10 min.
+
+🟢 18 — Radiologia Dentária: especialidade no CLAUDE.md não está em servicos-data.ts
+Problema: O CLAUDE.md lista "Radiologia Dentária" como uma das especialidades da clínica. O servicos-data.ts tem 11 especialidades mas inclui Facetas Dentárias no lugar de Radiologia Dentária. O hero diz "11 Especialidades". Há uma inconsistência de inventário.
+
+Solução: Clarificar com o cliente se Radiologia Dentária deve ter página própria (é transversal, pode não fazer sentido como serviço standalone) ou se deve aparecer apenas como texto. Estimativa: decisão de negócio, 30 min de código se necessário.
+
+Resumo executivo
+Categoria	Bloqueiam deploy	Importantes	Polimento
+ERS/Legal	🔴 1 (footer incompleto) · 🔴 3 (/politica-privacidade)	—	—
+Qualidade médica/E-E-A-T	🔴 2 (cédulas OMD) · 🔴 4 (blog demo)	🟡 11 (reviewedBy)	—
+Dados duplicados	—	🟡 5 · 🟡 8	🟢 14
+UX / links internos	—	🟡 6 · 🟡 7	🟢 16
+SEO / Schema	—	🟡 9 · 🟡 10	—
+Performance	—	🟡 12 (Maps)	🟢 13 (fonte)
+Conteúdo	—	—	🟢 15 · 🟢 17 · 🟢 18
+Veredicto: O projecto está bem construído tecnicamente — código limpo, Biome a passar, Next.js 16 correcto, RGPD respeitado nos formulários, ERS parcialmente implementada. Os 4 bloqueadores são todos de conteúdo/dados em falta (não de código), o que significa que o timeline de deploy depende do cliente fornecer informação legal, não de trabalho de desenvolvimento. Quando os dados chegarem, estima-se 3-4h de trabalho para fechar todos os 🔴 e os 🟡 mais importantes.

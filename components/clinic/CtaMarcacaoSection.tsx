@@ -1,3 +1,5 @@
+import { telefoneClinica, telemovelClinica } from "@/lib/clinica-data";
+
 export function CtaMarcacaoSection() {
   return (
     <section className="bg-gradient-to-r from-teal-800 to-teal-600 py-20 text-white">
@@ -27,17 +29,17 @@ export function CtaMarcacaoSection() {
 
         <p className="mt-8 text-sm text-teal-200">
           <a
-            href="tel:+351212228440"
+            href={telefoneClinica.href}
             className="font-medium text-white hover:text-teal-100 transition-colors"
           >
-            212 228 440
+            {telefoneClinica.value}
           </a>
           {" · "}
           <a
-            href="tel:+351929033712"
+            href={telemovelClinica.href}
             className="font-medium text-white hover:text-teal-100 transition-colors"
           >
-            929 033 712
+            {telemovelClinica.value}
           </a>
           {" · "}
           Rua Casal do Marco 67C, Torre da Marinha, Seixal

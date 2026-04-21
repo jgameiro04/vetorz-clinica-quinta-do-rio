@@ -1,10 +1,11 @@
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
+import { emailClinica, telefoneClinica, telemovelClinica } from "@/lib/clinica-data";
 
 const navLinks = [
   { href: "/servicos", label: "Serviços" },
   { href: "/equipa", label: "Equipa" },
-  { href: "/convenios", label: "Convénios" },
+  { href: "/convenios", label: "Acordos" },
   { href: "/marcacoes", label: "Marcar Consulta" },
   { href: "/contactos", label: "Contactos" },
 ];
@@ -49,26 +50,26 @@ export function Footer() {
               <p>
                 Tel:{" "}
                 <a
-                  href="tel:+351212228440"
+                  href={telefoneClinica.href}
                   className="text-stone-300 hover:text-teal-400 transition-colors"
                 >
-                  212 228 440
+                  {telefoneClinica.value}
                 </a>
                 {" / "}
                 <a
-                  href="tel:+351929033712"
+                  href={telemovelClinica.href}
                   className="text-stone-300 hover:text-teal-400 transition-colors"
                 >
-                  929 033 712
+                  {telemovelClinica.value}
                 </a>
               </p>
               <p>
                 Email:{" "}
                 <a
-                  href="mailto:geral@clinicaquintadorio.com"
+                  href={`mailto:${emailClinica}`}
                   className="text-stone-300 hover:text-teal-400 transition-colors"
                 >
-                  geral@clinicaquintadorio.com
+                  {emailClinica}
                 </a>
               </p>
             </div>
@@ -84,7 +85,7 @@ export function Footer() {
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-stone-500">NIF</dt>
-                <dd className="text-stone-400">[a confirmar]</dd>
+                <dd className="text-stone-400">507 431 227</dd>
               </div>
               <div>
                 <dt className="text-xs uppercase tracking-wide text-stone-500">Licença ERS</dt>

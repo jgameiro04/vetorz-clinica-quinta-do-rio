@@ -21,7 +21,7 @@ Deploy: Vercel fra1. Idioma: **PT-PT estrito** (ecrã, telemóvel, marcação, u
 
 **Especialidades:** Implantologia · Dentes fixos no próprio dia · Ortodontia · Prótese · Branqueamento · Odontopediatria · Periodontologia · Cirurgia oral · Endodontia · Dentisteria · Facetas · Radiologia
 
-**Convénios (a confirmar):** ADSE · SAMS · CGD · INCM
+**Acordos (a confirmar):** ADSE · SAMS · CGD · INCM
 
 ## Conformidade obrigatória
 

@@ -28,7 +28,7 @@ export function HeroSection() {
 
           {/* Subtítulo */}
           <p className="mb-8 max-w-xl text-lg leading-relaxed text-teal-100 sm:text-xl">
-            Clínica dentária multidisciplinar em Torre da Marinha, Seixal. Tratamentos modernos,
+            Clínica dentária multidisciplinar na Torre da Marinha, Seixal. Tratamentos modernos,
             equipa especializada e atendimento personalizado para toda a família.
           </p>
 

@@ -1,36 +1,13 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/clinic/ContactForm";
+import { contactos, horarios } from "@/lib/clinica-data";
 
 export const metadata: Metadata = {
   title: "Contactos — Clínica Quinta do Rio",
   description:
-    "Entre em contacto com a Clínica Quinta do Rio. Estamos em Torre da Marinha, Seixal. " +
+    "Entre em contacto com a Clínica Quinta do Rio. Estamos na Torre da Marinha, Seixal. " +
     "Ligue para 212 228 440 ou envie-nos uma mensagem.",
 };
-
-const horarios = [
-  { dias: "Segunda — Sexta", horas: "9h–13h / 14h–19h" },
-  { dias: "Sábado", horas: "9h–13h" },
-  { dias: "Domingo e feriados", horas: "Encerrado" },
-];
-
-const contactos = [
-  {
-    label: "Telefone",
-    value: "212 228 440",
-    href: "tel:+351212228440",
-  },
-  {
-    label: "Telemóvel",
-    value: "929 033 712",
-    href: "tel:+351929033712",
-  },
-  {
-    label: "Email",
-    value: "geral@clinicaquintadorio.com",
-    href: "mailto:geral@clinicaquintadorio.com",
-  },
-];
 
 export default function ContactosPage() {
   return (

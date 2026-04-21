@@ -1,41 +1,4 @@
-interface Medico {
-  nome: string;
-  titulo: string;
-  especialidade: string;
-  iniciais: string;
-  corAvatar: string;
-}
-
-const equipa: Medico[] = [
-  {
-    nome: "Dr. Pedro Matos Silvério",
-    titulo: "Médico Dentista",
-    especialidade: "Implantologia",
-    iniciais: "PS",
-    corAvatar: "bg-teal-700",
-  },
-  {
-    nome: "Dr.ª Ana Lúcia Diogo",
-    titulo: "Médica Dentista",
-    especialidade: "Ortodontia",
-    iniciais: "AD",
-    corAvatar: "bg-teal-600",
-  },
-  {
-    nome: "Dr. João Diogo",
-    titulo: "Médico Dentista",
-    especialidade: "Medicina Dentária Geral",
-    iniciais: "JD",
-    corAvatar: "bg-teal-800",
-  },
-  {
-    nome: "Dr.ª Ana Sofia Alves",
-    titulo: "Médica Dentista",
-    especialidade: "Medicina Dentária Geral",
-    iniciais: "AA",
-    corAvatar: "bg-teal-500",
-  },
-];
+import { medicos } from "@/lib/clinica-data";
 
 export function EquipaSection() {
   return (
@@ -55,14 +18,14 @@ export function EquipaSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {equipa.map((medico) => (
+          {medicos.map((medico) => (
             <div
               key={medico.nome}
               className="group rounded-2xl border border-stone-100 p-6 text-center transition duration-200 hover:shadow-md"
             >
               {/* Avatar com iniciais — fotografia profissional a adicionar pós-produção */}
               <div
-                className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105 ${medico.corAvatar}`}
+                className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105 ${medico.cor}`}
                 aria-hidden="true"
               >
                 <span className="text-xl font-bold text-white">{medico.iniciais}</span>

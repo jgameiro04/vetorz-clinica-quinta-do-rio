@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://clinicaquintadorio.com"),
   title: "Clínica Quinta do Rio — Medicina Dentária em Seixal",
   description:
-    "Clínica dentária multidisciplinar em Torre da Marinha, Seixal. " +
+    "Clínica dentária multidisciplinar na Torre da Marinha, Seixal. " +
     "Implantologia, Ortodontia, Branqueamento e muito mais. 17 anos de experiência.",
   openGraph: {
     locale: "pt_PT",

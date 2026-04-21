@@ -28,7 +28,7 @@ const diferenciais: Diferencial[] = [
   {
     icon: CreditCard,
     destaque: "ADSE · SAMS · CGD",
-    titulo: "Convénios e Seguros",
+    titulo: "Acordos e Seguros",
     descricao:
       "Trabalhamos com os principais subsistemas de saúde e seguradoras para facilitar o acesso " +
       "aos tratamentos. Consulte as condições do seu subsistema.",

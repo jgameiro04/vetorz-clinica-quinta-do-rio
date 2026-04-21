@@ -1,82 +1,20 @@
 import type { Metadata } from "next";
 import { CtaMarcacaoSection } from "@/components/clinic/CtaMarcacaoSection";
+import {
+  type Convenio,
+  emailClinica,
+  seguradoras,
+  subsistemas,
+  telefoneClinica,
+  telemovelClinica,
+} from "@/lib/clinica-data";
 
 export const metadata: Metadata = {
-  title: "Convénios e Subsistemas — Clínica Quinta do Rio",
+  title: "Acordos e Subsistemas — Clínica Quinta do Rio",
   description:
     "A Clínica Quinta do Rio trabalha com os principais subsistemas de saúde e seguradoras privadas. " +
-    "Consulte a lista de convénios disponíveis em Seixal.",
+    "Consulte a Lista de acordos disponíveis em Seixal.",
 };
-
-type Convenio = {
-  nome: string;
-  descricao: string;
-  tipo: "subsistema" | "seguradora";
-  iniciais: string;
-  cor: string;
-};
-
-const subsistemas: Convenio[] = [
-  {
-    nome: "ADSE",
-    descricao: "Subsistema de saúde dos funcionários da Administração Pública",
-    tipo: "subsistema",
-    iniciais: "AD",
-    cor: "bg-blue-600",
-  },
-  {
-    nome: "SAMS",
-    descricao: "Serviços de Assistência Médico-Social do Sector Bancário",
-    tipo: "subsistema",
-    iniciais: "SA",
-    cor: "bg-teal-700",
-  },
-  {
-    nome: "CGD",
-    descricao: "Subsistema de saúde da Caixa Geral de Depósitos",
-    tipo: "subsistema",
-    iniciais: "CG",
-    cor: "bg-green-700",
-  },
-  {
-    nome: "INCM",
-    descricao: "Subsistema de saúde da Imprensa Nacional — Casa da Moeda",
-    tipo: "subsistema",
-    iniciais: "IN",
-    cor: "bg-stone-600",
-  },
-  {
-    nome: "SNS",
-    descricao: "Serviço Nacional de Saúde — acordos específicos",
-    tipo: "subsistema",
-    iniciais: "SN",
-    cor: "bg-sky-700",
-  },
-];
-
-const seguradoras: Convenio[] = [
-  {
-    nome: "Multicare",
-    descricao: "Seguro de saúde da Fidelidade",
-    tipo: "seguradora",
-    iniciais: "MC",
-    cor: "bg-violet-600",
-  },
-  {
-    nome: "Médis",
-    descricao: "Seguro de saúde da Ageas Portugal",
-    tipo: "seguradora",
-    iniciais: "MD",
-    cor: "bg-orange-600",
-  },
-  {
-    nome: "AdvanceCare",
-    descricao: "Gestão de seguros de saúde empresariais",
-    tipo: "seguradora",
-    iniciais: "AC",
-    cor: "bg-cyan-700",
-  },
-];
 
 const passos = [
   {
@@ -128,11 +66,11 @@ export default function ConveniosPage() {
           <div className="flex items-center gap-3">
             <div className="h-1 w-8 rounded-full bg-teal-600" aria-hidden="true" />
             <span className="text-sm font-medium uppercase tracking-widest text-teal-600">
-              Convénios
+              Acordos
             </span>
           </div>
           <h1 className="mt-4 text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl">
-            Convénios e Subsistemas
+            Acordos e Subsistemas
           </h1>
           <p className="mt-4 max-w-2xl text-xl leading-relaxed text-stone-600">
             Trabalhamos com os principais subsistemas de saúde e seguradoras privadas para que possa
@@ -149,17 +87,17 @@ export default function ConveniosPage() {
             actualização. As condições de cobertura variam consoante o plano e o tratamento. Antes
             da consulta, confirme sempre a sua cobertura connosco —{" "}
             <a
-              href="tel:+351212228440"
+              href={telefoneClinica.href}
               className="font-medium underline underline-offset-2 hover:text-amber-900"
             >
-              212 228 440
+              {telefoneClinica.value}
             </a>{" "}
             /{" "}
             <a
-              href="tel:+351929033712"
+              href={telemovelClinica.href}
               className="font-medium underline underline-offset-2 hover:text-amber-900"
             >
-              929 033 712
+              {telemovelClinica.value}
             </a>
             .
           </p>
@@ -229,10 +167,10 @@ export default function ConveniosPage() {
                 plano específico ou apresentar-lhe as nossas condições de pagamento particulares.
               </p>
               <a
-                href="mailto:geral@clinicaquintadorio.com"
+                href={`mailto:${emailClinica}`}
                 className="mt-3 inline-flex text-sm font-medium text-teal-700 transition-colors hover:text-teal-600"
               >
-                geral@clinicaquintadorio.com →
+                {emailClinica} →
               </a>
             </div>
           </div>
