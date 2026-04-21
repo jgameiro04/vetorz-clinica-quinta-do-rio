@@ -20,14 +20,14 @@ export function HeroSection() {
           </div>
 
           {/* Headline principal */}
-          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+          <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl">
             O seu sorriso,
             <br />
             <span className="text-teal-200">o nosso compromisso</span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="mb-10 max-w-xl text-lg leading-relaxed text-teal-100">
+          <p className="mb-10 max-w-xl text-xl leading-relaxed text-teal-100">
             Clínica dentária multidisciplinar em Torre da Marinha, Seixal. Tratamentos modernos,
             equipa especializada e atendimento personalizado para toda a família.
           </p>

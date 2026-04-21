@@ -121,10 +121,10 @@ export default function EquipaPage() {
               Equipa
             </span>
           </div>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl">
             A Nossa Equipa
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-stone-600">
+          <p className="mt-4 max-w-2xl text-xl leading-relaxed text-stone-600">
             Profissionais experientes ao seu serviço. Conheça quem cuida do seu sorriso na Clínica
             Quinta do Rio.
           </p>

@@ -44,10 +44,10 @@ export default function ContactosPage() {
               Contactos
             </span>
           </div>
-          <h1 className="mt-4 text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
+          <h1 className="mt-4 text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl">
             Entre em Contacto
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-stone-600">
+          <p className="mt-4 max-w-2xl text-xl leading-relaxed text-stone-600">
             A nossa equipa está disponível para responder às suas questões e ajudá-lo a marcar a sua
             consulta.
           </p>

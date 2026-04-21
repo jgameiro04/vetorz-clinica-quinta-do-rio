@@ -80,11 +80,11 @@ export default async function ServicoPage({ params }: Props) {
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-teal-600 text-white">
               <Icon className="h-7 w-7" aria-hidden="true" />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight text-stone-900 sm:text-5xl">
+            <h1 className="text-5xl font-bold tracking-tight text-stone-900 sm:text-6xl">
               {servico.titulo}
             </h1>
           </div>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-stone-600">
+          <p className="mt-5 max-w-2xl text-xl leading-relaxed text-stone-600">
             {servico.descricaoCurta}
           </p>
           {servico.medicoResponsavel && (
