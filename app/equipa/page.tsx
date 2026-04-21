@@ -109,7 +109,6 @@ export default function EquipaPage() {
     <>
       <script
         type="application/ld+json"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD estático, sem input do utilizador
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 

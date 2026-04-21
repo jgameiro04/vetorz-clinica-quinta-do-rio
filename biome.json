@@ -80,7 +80,7 @@
   },
   "overrides": [
     {
-      "includes": ["app/layout.tsx"],
+      "includes": ["app/layout.tsx", "app/equipa/page.tsx", "app/servicos/\\[slug\\]/page.tsx"],
       "linter": {
         "rules": {
           "security": {
