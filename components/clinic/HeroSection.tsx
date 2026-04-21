@@ -11,7 +11,7 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:py-32 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:py-16 lg:px-8">
         <div className="max-w-2xl">
           {/* Badge */}
           <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
