@@ -11,23 +11,23 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:py-32 lg:px-8">
         <div className="max-w-2xl">
           {/* Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
             <span className="h-2 w-2 rounded-full bg-teal-300" aria-hidden="true" />
             17 anos a cuidar do seu sorriso
           </div>
 
           {/* Headline principal */}
-          <h1 className="mb-6 text-5xl font-bold leading-tight tracking-tight sm:text-6xl">
+          <h1 className="mb-5 text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
             O seu sorriso,
             <br />
             <span className="text-teal-200">o nosso compromisso</span>
           </h1>
 
           {/* Subtítulo */}
-          <p className="mb-10 max-w-xl text-xl leading-relaxed text-teal-100">
+          <p className="mb-8 max-w-xl text-lg leading-relaxed text-teal-100 sm:text-xl">
             Clínica dentária multidisciplinar em Torre da Marinha, Seixal. Tratamentos modernos,
             equipa especializada e atendimento personalizado para toda a família.
           </p>
@@ -50,7 +50,7 @@ export function HeroSection() {
         </div>
 
         {/* Estatísticas */}
-        <div className="mt-16 grid max-w-sm grid-cols-3 gap-8">
+        <div className="mt-10 grid max-w-sm grid-cols-3 gap-6 lg:mt-16 lg:gap-8">
           <div>
             <p className="text-3xl font-bold text-white">17+</p>
             <p className="mt-1 text-sm text-teal-200">Anos de experiência</p>
