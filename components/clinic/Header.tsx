@@ -27,7 +27,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-stone-600 transition-colors hover:text-teal-600"
+              className="text-sm text-stone-600 transition-colors duration-200 hover:text-teal-600"
             >
               {link.label}
             </Link>
@@ -36,7 +36,7 @@ export function Header() {
 
         <Link
           href="/marcacoes"
-          className="hidden rounded-full bg-teal-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-teal-700 sm:inline-flex"
+          className="hidden rounded-full bg-teal-600 px-5 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-teal-700 sm:inline-flex"
         >
           Marcar Consulta
         </Link>

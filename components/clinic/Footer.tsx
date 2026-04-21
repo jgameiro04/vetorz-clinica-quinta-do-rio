@@ -27,7 +27,7 @@ export function Footer() {
               href="https://www.livroreclamacoes.pt/inicio"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold underline underline-offset-2 hover:text-teal-200 transition-colors"
+              className="font-semibold underline underline-offset-2 transition-colors duration-200 hover:text-teal-200"
             >
               Livro de Reclamações Eletrónico
             </a>
@@ -85,7 +85,10 @@ export function Footer() {
               <ul className="space-y-2 text-sm">
                 {navLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="transition-colors hover:text-teal-400">
+                    <Link
+                      href={link.href}
+                      className="transition-colors duration-200 hover:text-teal-400"
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -94,7 +97,10 @@ export function Footer() {
               <ul className="mt-5 space-y-2 text-sm text-stone-500">
                 {legalLinks.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="transition-colors hover:text-teal-400">
+                    <Link
+                      href={link.href}
+                      className="transition-colors duration-200 hover:text-teal-400"
+                    >
                       {link.label}
                     </Link>
                   </li>
@@ -112,7 +118,7 @@ export function Footer() {
               href="https://vetorz.pt"
               target="_blank"
               rel="noopener noreferrer"
-              className="transition-colors hover:text-teal-400"
+              className="transition-colors duration-200 hover:text-teal-400"
             >
               VetorZ
             </a>

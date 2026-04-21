@@ -71,9 +71,9 @@ export function ServicosSection() {
             return (
               <div
                 key={servico.titulo}
-                className="group rounded-2xl border border-stone-100 bg-stone-50 p-6 transition-colors hover:border-teal-200 hover:bg-teal-50"
+                className="group rounded-2xl border border-stone-100 bg-stone-50 p-6 transition duration-200 hover:-translate-y-1 hover:border-teal-200 hover:bg-teal-50 hover:shadow-md"
               >
-                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600 transition-colors group-hover:bg-teal-600 group-hover:text-white">
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-teal-100 text-teal-600 transition-colors duration-200 group-hover:bg-teal-600 group-hover:text-white">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <h3 className="mb-2 text-base font-semibold text-stone-900">{servico.titulo}</h3>

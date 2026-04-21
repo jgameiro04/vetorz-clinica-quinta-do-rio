@@ -36,13 +36,13 @@ export function HeroSection() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="/marcacoes"
-              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-semibold text-teal-700 shadow-lg transition-colors hover:bg-teal-50"
+              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-base font-semibold text-teal-700 shadow-lg transition-colors duration-200 hover:bg-teal-50"
             >
               Marcar Consulta
             </a>
             <a
               href="/servicos"
-              className="inline-flex items-center justify-center rounded-full border-2 border-white/40 px-8 py-3.5 text-base font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full border-2 border-white/40 px-8 py-3.5 text-base font-medium text-white transition-colors duration-200 hover:bg-white/10"
             >
               Ver Serviços
             </a>

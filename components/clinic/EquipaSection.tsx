@@ -58,11 +58,11 @@ export function EquipaSection() {
           {equipa.map((medico) => (
             <div
               key={medico.nome}
-              className="rounded-2xl border border-stone-100 p-6 text-center transition-shadow hover:shadow-md"
+              className="group rounded-2xl border border-stone-100 p-6 text-center transition duration-200 hover:shadow-md"
             >
               {/* Avatar com iniciais — fotografia profissional a adicionar pós-produção */}
               <div
-                className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full ${medico.corAvatar}`}
+                className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full transition-transform duration-200 group-hover:scale-105 ${medico.corAvatar}`}
                 aria-hidden="true"
               >
                 <span className="text-xl font-bold text-white">{medico.iniciais}</span>
