@@ -80,7 +80,7 @@ export default function ContactosPage() {
               </div>
 
               {/* Morada */}
-              <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-6">
+              <div className="mt-6 rounded-2xl border border-stone-200 bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-stone-500">
                   Morada
                 </h3>

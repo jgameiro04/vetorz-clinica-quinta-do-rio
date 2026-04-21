@@ -41,7 +41,7 @@ export default function ServicosPage() {
                 <Link
                   key={servico.slug}
                   href={`/servicos/${servico.slug}`}
-                  className="group flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-all duration-200 hover:border-teal-300 hover:shadow-md"
+                  className="group flex flex-col rounded-2xl border border-stone-200 bg-white p-7 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-teal-300 hover:shadow-lg"
                 >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal-600 transition-colors duration-200 group-hover:bg-teal-100">
                     <Icon className="h-6 w-6" aria-hidden="true" />

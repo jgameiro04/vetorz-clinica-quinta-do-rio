@@ -66,7 +66,7 @@ export default function MarcacoesPage() {
             {/* Coluna direita — 40% */}
             <div className="space-y-6 lg:col-span-2">
               {/* Como funciona */}
-              <div className="rounded-2xl border border-stone-200 bg-white p-7">
+              <div className="rounded-2xl border border-stone-200 bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
                 <div className="mb-6 flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50">
                   <svg
                     className="h-6 w-6 text-teal-600"
@@ -100,7 +100,7 @@ export default function MarcacoesPage() {
               </div>
 
               {/* Contactos + horários */}
-              <div className="rounded-2xl border border-stone-200 bg-white p-7">
+              <div className="rounded-2xl border border-stone-200 bg-white p-7 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-stone-500">
                   Prefere ligar?
                 </h3>

@@ -42,7 +42,7 @@ export default function BlogPage() {
               {posts.map((post) => (
                 <article
                   key={post.slug}
-                  className="group flex flex-col rounded-2xl border border-stone-200 bg-white shadow-sm transition-shadow duration-200 hover:shadow-md"
+                  className="group relative flex flex-col rounded-2xl border border-stone-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
                 >
                   {/* Imagem placeholder */}
                   <div className="flex h-48 items-center justify-center rounded-t-2xl bg-gradient-to-br from-teal-50 to-teal-100">

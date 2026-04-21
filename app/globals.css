@@ -67,3 +67,17 @@ main > section:nth-child(7) {
     animation: none;
   }
 }
+
+/* Transições hover globais — botões e links interactivos */
+a,
+button {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lift consistente em cards com hover — reutilizado via Tailwind nos componentes */
+@keyframes cardLift {
+  to {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.08);
+  }
+}

@@ -140,12 +140,12 @@ export default function EquipaPage() {
             {medicos.map((medico) => (
               <article
                 key={medico.nome}
-                className="flex flex-col rounded-2xl border border-stone-200 bg-white p-8 shadow-sm"
+                className="flex flex-col rounded-2xl border border-stone-200 bg-white p-8 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
               >
                 {/* Avatar + nome */}
                 <div className="flex items-start gap-5">
                   <div
-                    className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${medico.cor}`}
+                    className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full transition-transform duration-200 hover:scale-105 ${medico.cor}`}
                     aria-hidden="true"
                   >
                     <span className="text-lg font-bold text-white">{medico.iniciais}</span>
@@ -196,7 +196,7 @@ export default function EquipaPage() {
             {assistentes.map((a) => (
               <div
                 key={a.nome}
-                className="flex items-center gap-4 rounded-xl border border-stone-200 bg-white px-6 py-5"
+                className="flex items-center gap-4 rounded-xl border border-stone-200 bg-white px-6 py-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
               >
                 <div
                   className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stone-200"
