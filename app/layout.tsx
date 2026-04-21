@@ -45,8 +45,8 @@ const jsonLd = {
         latitude: "38.65",
         longitude: "-9.08",
       },
-      // a confirmar com a clínica
-      telephone: "+351-XXX-XXX-XXX",
+      telephone: ["+351212228440", "+351929033712"],
+      email: "geral@clinicaquintadorio.com",
       medicalSpecialty: ["Dentistry", "Orthodontics", "Dental Implants"],
     },
     {

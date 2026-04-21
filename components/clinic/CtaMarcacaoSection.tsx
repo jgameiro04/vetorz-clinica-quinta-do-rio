@@ -26,7 +26,19 @@ export function CtaMarcacaoSection() {
         </div>
 
         <p className="mt-8 text-sm text-teal-200">
-          Tel: <span className="font-medium text-white">[a confirmar]</span>
+          <a
+            href="tel:+351212228440"
+            className="font-medium text-white hover:text-teal-100 transition-colors"
+          >
+            212 228 440
+          </a>
+          {" · "}
+          <a
+            href="tel:+351929033712"
+            className="font-medium text-white hover:text-teal-100 transition-colors"
+          >
+            929 033 712
+          </a>
           {" · "}
           Rua Casal do Marco 67C, Torre da Marinha, Seixal
         </p>

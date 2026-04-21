@@ -47,10 +47,29 @@ export function Footer() {
             </address>
             <div className="mt-3 space-y-1 text-sm">
               <p>
-                Tel: <span className="text-stone-400">[a confirmar]</span>
+                Tel:{" "}
+                <a
+                  href="tel:+351212228440"
+                  className="text-stone-300 hover:text-teal-400 transition-colors"
+                >
+                  212 228 440
+                </a>
+                {" / "}
+                <a
+                  href="tel:+351929033712"
+                  className="text-stone-300 hover:text-teal-400 transition-colors"
+                >
+                  929 033 712
+                </a>
               </p>
               <p>
-                Email: <span className="text-stone-400">[a confirmar]</span>
+                Email:{" "}
+                <a
+                  href="mailto:geral@clinicaquintadorio.com"
+                  className="text-stone-300 hover:text-teal-400 transition-colors"
+                >
+                  geral@clinicaquintadorio.com
+                </a>
               </p>
             </div>
           </div>
