@@ -135,7 +135,7 @@ export function Footer() {
           <p>
             Website por{" "}
             <a
-              href="https://vetorz.pt"
+              href="https://vetorz.com"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors duration-200 hover:text-teal-400"
